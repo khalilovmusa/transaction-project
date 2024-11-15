@@ -37,8 +37,8 @@ body {
 
 .list .list-item {
     list-style-type: none;
-    margin-bottom: 10px;
-    color: ivory;
+    margin-bottom: 15px;
+    color: purple;
 }
 
 .transactions-container {
@@ -163,6 +163,7 @@ body {
 .list::-webkit-scrollbar-thumb {
     background: #ffc5c5; /* Color of the thumb */
     border-radius: 6px; /* Make it round */
+    transition: 0.3s;
 }
 
 .list::-webkit-scrollbar-track {
@@ -173,4 +174,5 @@ body {
 /* Optional: Hover effect for the thumb */
 .list::-webkit-scrollbar-thumb:hover {
     background: #efd4ff; /* Darker color when hovering */
+    transition: 0.3s;
 }
