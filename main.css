@@ -31,6 +31,17 @@ body {
     list-style-type: none;
     margin-bottom: 15px;
     color: purple;
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 5px 7px;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.list .list-item  div{
+    display: inline-block;
 }
 
 .transactions-container {
@@ -46,7 +57,7 @@ body {
     align-items: center;
     background: ivory;
     color: #E9E4F0;
-    ;
+    margin-left: 5px;
 }
 
 /* Add Transaction Button CSS */
