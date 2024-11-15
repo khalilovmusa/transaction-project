@@ -19,6 +19,8 @@ body {
     border: 1px solid ivory;
     padding: 10px;
     border-radius: 10px;
+    min-width: 500px;
+    min-height: 350px;
 }
 
 .wrapper .button-container {
