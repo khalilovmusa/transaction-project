@@ -8,12 +8,14 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
 }
 .wrapper{
     display: flex;
     flex-direction: column;
     border: 1px solid black;
     padding: 10px;
+    border-radius: 10px;
 }
 .wrapper .button-container{
     position: relative;
@@ -33,7 +35,7 @@ body{
     margin-bottom: 10px;
 }
 .transactions-container{
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .button{
     height: 35px;
@@ -43,3 +45,42 @@ body{
     padding: 5px;
     align-items: center;
 }
+
+/* Add Transaction Button CSS */
+
+.transaction-add-button {
+    padding: 0.5em 1.3em;
+    border: 2px solid #17C3B2;
+    overflow: hidden;
+    background-color: transparent;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    transition: .3s;
+    z-index: 1;
+    font-family: inherit;
+    color: #17C3B2;
+}
+
+.transaction-add-button::before {
+    content: '';
+    width: 0;
+    height: 300%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: #17C3B2;
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+.transaction-add-button:hover::before {
+    width: 105%;
+}
+
+.transaction-add-button:hover {
+    color: ivory;
+}
+
