@@ -13,6 +13,7 @@ body{
     display: flex;
     flex-direction: column;
     border: 1px solid black;
+    padding: 10px;
 }
 .wrapper .button-container{
     position: relative;
@@ -21,7 +22,7 @@ body{
 .transaction-add-button{
     position: absolute;
     right: 20px;
-    bottom: 15px;
+    top: 0px;
     padding: 8px 5px;
     cursor: pointer;
     border-radius: 10px;
@@ -30,4 +31,15 @@ body{
 .list .list-item{
     list-style-type: none;
     margin-bottom: 10px;
+}
+.transactions-container{
+    margin-top: 20px;
+}
+.button{
+    height: 35px;
+    width: 35px;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    align-items: center;
 }
