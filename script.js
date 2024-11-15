@@ -5,7 +5,19 @@ class Transactions {
     addTransaction(item) {
         this.transactionsArr.push(item);
     }
-    removeTransaction() { }
+    removeTransaction(id) { 
+        fetch(`https://acb-api.algoritmika.org/api/transaction/${id}`, {
+            method: "DELETE",
+        }).then((response) => {
+            if (!response.ok) {
+                throw new Error("Failed to delete the transaction.");
+            }
+            return response.json(); // Optional: depends on your API response
+        }).then((data) => {
+            document.querySelector(".list").innerHTML = '';
+            transactionMethods.updateTransactionUi(data);
+        })
+    }
     editTransaction() { }
 }
 
@@ -26,7 +38,8 @@ class TransactionMethods {
 </svg>`;
     }
 
-    createTransactionUi(dataArr) {
+    updateTransactionUi(dataArr) {
+        transactions.transactionsArr = dataArr;
             dataArr.forEach((data) => {
                 const listItem = document.createElement("li");
                 const editButton = document.createElement("button");
@@ -39,6 +52,8 @@ class TransactionMethods {
                 deleteButton.classList.add("button");
                 deleteButton.classList.add("delete-transaction");
 
+                listItem.id = data.id;
+
                 editButton.innerHTML = this.editButtonSvg;
                 deleteButton.innerHTML = this.deleteButtonSvg;
 
@@ -47,14 +62,22 @@ class TransactionMethods {
                 listItem.textContent = `From: ${data.from} | To: ${data.to} | amount: ${data.amount}$  `;
                 listItem.append(buttonsDiv);
                 this.list.append(listItem);
+
+                //! Remove button event add
+
+                deleteButton.addEventListener("click", (e) => {
+                    const deleteId = e.target.closest(".list-item").id
+                    transactions.removeTransaction(deleteId);
+                })
             })
+            console.log(transactions.transactionsArr)
     }
 
     init() {
         fetch('https://acb-api.algoritmika.org/api/transaction').then((res) => {
             return res.json();
         }).then((dataArr) => {
-            this.createTransactionUi(dataArr);
+            this.updateTransactionUi(dataArr);
         })
     }
 }
