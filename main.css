@@ -1,27 +1,31 @@
-*{
+* {
     font-family: monospace, sans-serif;
     margin: 0;
     padding: 0;
 }
-body{
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
 }
-.wrapper{
+
+.wrapper {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 1px solid ivory;
     padding: 10px;
     border-radius: 10px;
 }
-.wrapper .button-container{
+
+.wrapper .button-container {
     position: relative;
     margin-bottom: 20px;
 }
-.transaction-add-button{
+
+.transaction-add-button {
     position: absolute;
     right: 20px;
     top: 0px;
@@ -30,20 +34,27 @@ body{
     border-radius: 10px;
     border: 1px dashed black;
 }
-.list .list-item{
+
+.list .list-item {
     list-style-type: none;
     margin-bottom: 10px;
+    color: ivory;
 }
-.transactions-container{
+
+.transactions-container {
     margin-top: 30px;
 }
-.button{
+
+.button {
     height: 35px;
     width: 35px;
     border: none;
     border-radius: 50%;
     padding: 5px;
     align-items: center;
+    background: ivory;
+    color: #E9E4F0;
+    ;
 }
 
 /* Add Transaction Button CSS */
@@ -84,3 +95,29 @@ body{
     color: ivory;
 }
 
+/* Wrapper background color add */
+
+.wrapper {
+    background: linear-gradient(130deg, #D3CCE3, #E9E4F0);
+}
+
+
+.delete-transaction:hover {
+    background-image: linear-gradient(to right, #e53935 0%, #e35d5b 51%, #e53935 100%)
+}
+
+.delete-transaction:hover {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+
+.delete-transaction:hover:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
