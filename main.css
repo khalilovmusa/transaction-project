@@ -101,6 +101,7 @@ body {
     background: linear-gradient(130deg, #D3CCE3, #E9E4F0);
 }
 
+/* Delete button CSS */
 
 .delete-transaction:hover {
     background-image: linear-gradient(to right, #e53935 0%, #e35d5b 51%, #e53935 100%)
@@ -109,7 +110,7 @@ body {
 .delete-transaction:hover {
     text-align: center;
     text-transform: uppercase;
-    transition: 0.5s;
+    transition: 0.5s ease;
     background-size: 200% auto;
     color: white;
     box-shadow: 0 0 20px #eee;
@@ -120,4 +121,56 @@ body {
     background-position: right center;
     color: #fff;
     text-decoration: none;
+}
+
+/* Edit button CSS */
+
+.edit-transaction:hover {
+    background-image: linear-gradient(to right, #e53935 0%, #e35d5b 51%, #e53935 100%)
+}
+
+.edit-transaction:hover {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s ease;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+
+.edit-transaction:hover:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/* transactions list CSS */
+
+.list {
+    max-height: 300px;
+    overflow: auto;
+    padding-right: 5px;
+}
+
+.list::-webkit-scrollbar {
+    transition: 0.5s ease;
+    width: 5px; /* Width for vertical scrollbars */
+    height: 12px; /* Height for horizontal scrollbars */
+}
+
+.list::-webkit-scrollbar-thumb {
+    background: #ffc5c5; /* Color of the thumb */
+    border-radius: 6px; /* Make it round */
+}
+
+.list::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the track */
+    border-radius: 6px; /* Make it round */
+}
+
+/* Optional: Hover effect for the thumb */
+.list::-webkit-scrollbar-thumb:hover {
+    background: #efd4ff; /* Darker color when hovering */
 }
