@@ -2,6 +2,7 @@
     font-family: monospace, sans-serif;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -151,7 +152,7 @@ body {
 .list {
     max-height: 300px;
     overflow: auto;
-    padding-right: 5px;
+    padding-right: 15px;
 }
 
 .list::-webkit-scrollbar {
