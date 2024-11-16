@@ -54,12 +54,22 @@
     <div class="popup">
         <div class="overlay"></div>
         <div class="popup-content">
-            <label for="from-input">From:</label>
-            <input name="from-input" type="text" class="input-from">
-            <label for="to-input">To:</label>
-            <input name="to-input" class="input-to" type="text">
+            <h4 class="popup-header">Create a new transaction</h4>
+            <p class="error-message">Please fill up correctly</p>
+            <div class="div">
+                <label for="from-input">From:</label>
+                <input required name="from-input" type="text" class="input-from">
+            </div>
+            <div class="div">
+                <label for="to-input">To:</label>
+                <input required name="to-input" class="input-to" type="text">
+            </div>
+            <div class="div">
+                <label for="amount">Amount:</label>
+                <input required name="amount" class="input-amount" type="number">
+            </div>
             <div class="control-buttons">
-                <button class="create-transaction">Add</button>
+                <button type="submit" class="create-transaction">Create</button>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(1.15);
     width: 95%;
-    max-width: 350px;
+    max-width: 400px;
     height: 300px;
     background: #fff;
     opacity: 0;
@@ -33,13 +33,13 @@
 }
 
 .popup .popup-content .control-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0px 0px;
+    width: 100%;
+    margin-left: 38%;
+    margin-top: 10%;
 }
 
 .popup .popup-content .control-buttons button{
-    padding: 10px 20px;
+    padding: 10px 30px;
     border: none;
     outline: none;
     font-size: 15px;
@@ -65,4 +65,24 @@
 .popup.active .popup-content{
     transform: translate(-50%,-50%) scale(1);
     opacity: 1;
+}
+.div{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.div input{
+    border-radius: 5px;
+}
+
+.popup-header{
+    margin-bottom: 10%;
+}
+
+.error-message{
+    display: none;
+    color: red;
+    height: 20px;
+    width: 100%;
 }

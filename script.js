@@ -12,7 +12,7 @@ class Transactions {
             if (!response.ok) {
                 throw new Error("Failed to delete the transaction.");
             }
-            return response.json(); // Optional: depends on your API response
+            return response.json();
         }).then((data) => {
             document.querySelector(".list").innerHTML = '';
             transactionMethods.updateTransactionUi(data);
@@ -37,10 +37,10 @@ class TransactionMethods {
         d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
 </svg>`;
     }
-//
+
     transactionButtonEvent() {
         const addTransactionButton = document.querySelector(".transaction-add-button");
-
+        const submitTransaction = document.querySelector(".create-transaction");
         addTransactionButton.addEventListener("click", () => {
             const popup = document.querySelector(".popup");
             if (!popup.classList.contains("active")) {
@@ -55,6 +55,46 @@ class TransactionMethods {
                     addTransactionButton.textContent = "Add Transaction";
                     popup.classList.remove("active");
                 });
+            }
+        })
+
+        submitTransaction.addEventListener("click", () => {
+            const fromInput = document.querySelector(".input-from");
+            const toInput = document.querySelector(".input-to");
+            const amountInput = document.querySelector(".input-amount");
+            if(amountInput.value !== '', fromInput.value !== '', toInput.value !== ''){
+                const transaction = {
+                    from: fromInput.value,
+                    to: toInput.value,
+                    amount: amountInput.value
+                }
+                fetch("https://acb-api.algoritmika.org/api/transaction", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json", // Specify the content type
+                    },
+                    body: JSON.stringify(transaction), // Convert the transaction object to JSON
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error("Failed to add the transaction.");
+                        }
+                        return response.json(); // Parse the response JSON
+                    })
+                    .then((newTransaction) => {
+                        transactions.transactionsArr.push(newTransaction);
+    
+                        document.querySelector(".list").innerHTML = '';
+                        transactionMethods.updateTransactionUi(transactions.transactionsArr);
+                        console.log(transactions.transactionsArr)
+    
+                        console.log("Transaction added:", newTransaction);
+                    })
+                    .catch((error) => {
+                        console.error("Error adding transaction:", error);
+                    });
+            }else{
+                
             }
         })
     }
@@ -84,15 +124,14 @@ class TransactionMethods {
             listItem.append(buttonsDiv);
             this.list.append(listItem);
 
-            //! Remove button event add
+            //! Remove button event handling
 
             deleteButton.addEventListener("click", (e) => {
                 const deleteId = e.target.closest(".list-item").id
                 transactions.removeTransaction(deleteId);
             })
 
-            //! Add button event adding
-
+            //! Edit button event handling
 
         })
         console.log(transactions.transactionsArr)
