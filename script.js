@@ -18,7 +18,18 @@ class Transactions {
             transactionMethods.updateTransactionUi(data);
         })
     }
-    editTransaction() { }
+    editTransaction(id) {
+        fetch(`https://acb-api.algoritmika.org/api/transaction/${id}`, {
+            method: "PUT",
+        }).then((response) => {
+            if (!response.ok) {
+                throw new Error("Failed to delete the transaction.");
+            }
+            return response.json();
+        }).then((data) => {
+            console.log(data)
+        })
+     }
 }
 
 class TransactionMethods {
@@ -143,6 +154,11 @@ class TransactionMethods {
 
             //! Edit button event handling
 
+            editButton.addEventListener("click", (e) => {
+                const editId = e.target.closest(".list-item").id;
+                console.log(editId)
+                // transactions.editTransaction(editId);
+            })
         })
         console.log(transactions.transactionsArr)
     }

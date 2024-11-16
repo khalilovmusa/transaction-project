@@ -141,7 +141,11 @@ body {
 /* Edit button CSS */
 
 .edit-transaction:hover {
-    background-image: linear-gradient(to right, #e53935 0%, #e35d5b 51%, #e53935 100%)
+    background-image: linear-gradient(to right, #ffffC5 0%, #ffffC5 51%, #ffffc5c9 100%);
+}
+
+.edit-transaction:hover svg{
+    color: black;
 }
 
 .edit-transaction:hover {
