@@ -64,7 +64,7 @@ class TransactionMethods {
             const fromInput = document.querySelector(".input-from");
             const toInput = document.querySelector(".input-to");
             const amountInput = document.querySelector(".input-amount");
-            if (amountInput.value !== '', fromInput.value !== '', toInput.value !== '') {
+            if (Number(amountInput.value ) > 0 && amountInput.value !== '' && fromInput.value !== '' && toInput.value !== '' ) {
                 const transaction = {
                     from: fromInput.value,
                     to: toInput.value,
@@ -102,6 +102,9 @@ class TransactionMethods {
                 const message = document.querySelector(".message");
                 message.classList.add("error");
                 message.textContent = `Please fill up correctly`;
+                fromInput.value = ''
+                amountInput.value = ''
+                toInput.value = ''
             }
         })
     }
