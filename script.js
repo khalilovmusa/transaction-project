@@ -5,7 +5,7 @@ class Transactions {
     addTransaction(item) {
         this.transactionsArr.push(item);
     }
-    removeTransaction(id) { 
+    removeTransaction(id) {
         fetch(`https://acb-api.algoritmika.org/api/transaction/${id}`, {
             method: "DELETE",
         }).then((response) => {
@@ -37,40 +37,65 @@ class TransactionMethods {
         d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
 </svg>`;
     }
+//
+    transactionButtonEvent() {
+        const addTransactionButton = document.querySelector(".transaction-add-button");
+
+        addTransactionButton.addEventListener("click", () => {
+            const popup = document.querySelector(".popup");
+            if (!popup.classList.contains("active")) {
+                addTransactionButton.textContent = "Close";
+                popup.classList.add("active");
+                console.log(popup.classList.contains("active"))
+            } else {
+                addTransactionButton.textContent = "Add Transaction";
+                popup.classList.remove("active");
+                const overlay = document.querySelector(".overlay");
+                overlay.addEventListener("click", () => {
+                    addTransactionButton.textContent = "Add Transaction";
+                    popup.classList.remove("active");
+                });
+            }
+        })
+    }
 
     updateTransactionUi(dataArr) {
         transactions.transactionsArr = dataArr;
-            dataArr.forEach((data) => {
-                const listItem = document.createElement("li");
-                const editButton = document.createElement("button");
-                const deleteButton = document.createElement("button");
-                const buttonsDiv = document.createElement("div");
+        dataArr.forEach((data) => {
+            const listItem = document.createElement("li");
+            const editButton = document.createElement("button");
+            const deleteButton = document.createElement("button");
+            const buttonsDiv = document.createElement("div");
 
-                listItem.classList.add("list-item");
-                editButton.classList.add("button");
-                editButton.classList.add("edit-transaction");
-                deleteButton.classList.add("button");
-                deleteButton.classList.add("delete-transaction");
+            listItem.classList.add("list-item");
+            editButton.classList.add("button");
+            editButton.classList.add("edit-transaction");
+            deleteButton.classList.add("button");
+            deleteButton.classList.add("delete-transaction");
 
-                listItem.id = data.id;
+            listItem.id = data.id;
 
-                editButton.innerHTML = this.editButtonSvg;
-                deleteButton.innerHTML = this.deleteButtonSvg;
+            editButton.innerHTML = this.editButtonSvg;
+            deleteButton.innerHTML = this.deleteButtonSvg;
 
-                buttonsDiv.append(editButton, deleteButton);
+            buttonsDiv.append(editButton, deleteButton);
 
-                listItem.textContent = `From: ${data.from} | To: ${data.to} | amount: ${data.amount}$  `;
-                listItem.append(buttonsDiv);
-                this.list.append(listItem);
+            listItem.textContent = `From: ${data.from} | To: ${data.to} | amount: ${data.amount}$  `;
+            listItem.append(buttonsDiv);
+            this.list.append(listItem);
 
-                //! Remove button event add
+            //! Remove button event add
 
-                deleteButton.addEventListener("click", (e) => {
-                    const deleteId = e.target.closest(".list-item").id
-                    transactions.removeTransaction(deleteId);
-                })
+            deleteButton.addEventListener("click", (e) => {
+                const deleteId = e.target.closest(".list-item").id
+                transactions.removeTransaction(deleteId);
             })
-            console.log(transactions.transactionsArr)
+
+            //! Add button event adding
+
+
+        })
+        console.log(transactions.transactionsArr)
     }
 
     init() {
@@ -87,3 +112,4 @@ const transactions = new Transactions();
 const transactionMethods = new TransactionMethods();
 
 transactionMethods.init();
+transactionMethods.transactionButtonEvent();
