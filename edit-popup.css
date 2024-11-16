@@ -26,7 +26,8 @@
     width: 95%;
     max-width: 400px;
     height: 330px;
-    background: linear-gradient(130deg, #FFEFBA, #FFFFFF);
+    /* background: linear-gradient(130deg, #FFEFBA, #FFFFFF); */
+    background: linear-gradient(130deg, #F7971E, #FFD200);
     opacity: 0;
     padding: 25px;
     border-radius: 25px;

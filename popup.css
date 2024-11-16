@@ -47,17 +47,35 @@
     font-size: 15px;
     border-radius: 20px;
     cursor: pointer;
+    /* background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%); */
 }
 
-.popup .popup-content .control-buttons .close-popup {
-    background: transparent;
-    color: #3284ed;
-}
 
-.popup .popup-content .control-buttons .create-transaction {
+.popup .popup-content .control-buttons button  {background-image: linear-gradient(to right, #1D976C 0%, #93F9B9  51%, #1D976C  100%)}
+.popup .popup-content .control-buttons button  {
+
+   padding: 10px 30px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+ }
+
+ .popup .popup-content .control-buttons button :hover {
+   background-position: right center;
+   color: #fff;
+   text-decoration: none;
+ } 
+
+
+/* .popup .popup-content .control-buttons .create-transaction {
     background: #3284ed;
     color: #fff;
-}
+} */
 
 .popup.active {
     top: 0px;
@@ -85,6 +103,7 @@
 
 .div input {
     border-radius: 5px;
+    outline-color: ivory;
 }
 
 .popup-header {

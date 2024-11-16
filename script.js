@@ -80,6 +80,7 @@ class TransactionMethods {
             if (!popup.classList.contains("active")) {
                 addTransactionButton.textContent = "Close";
                 popup.classList.add("active");
+                document.querySelector(".transaction-add-button").style.zIndex = "2";
             } else {
                 addTransactionButton.textContent = "Add Transaction";
                 popup.classList.remove("active");
@@ -179,6 +180,7 @@ class TransactionMethods {
                 const editPopup = document.querySelector(".edit-popup");
                 const cancelEditBtn = document.querySelector(".cancel-edit-btn");
                 const editOverlay = document.querySelector(".edit-overlay");
+                document.querySelector(".transaction-add-button").style.zIndex = "0";
             
                 const editInputFrom = document.querySelector(".input-edit-from");
                 const editInputTo = document.querySelector(".input-edit-to");
