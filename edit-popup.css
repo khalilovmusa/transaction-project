@@ -1,4 +1,4 @@
-.popup {
+.edit-popup {
     position: fixed;
     top: 100vh;
     left: 0px;
@@ -6,7 +6,7 @@
     height: 100%;
 }
 
-.popup .overlay {
+.edit-popup .overlay {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -17,7 +17,7 @@
     transition: opacity 100ms ease-in-out 200ms;
 }
 
-.popup .popup-content {
+.edit-popup .popup-content {
     z-index: 99;
     position: absolute;
     top: 50%;
@@ -33,14 +33,13 @@
     box-shadow: 0px 2px 2px 5px rgba(0, 0, 0, 0.05);
     transition: all 300ms ease-in-out;
 }
-
-.popup .popup-content .control-buttons {
+.edit-popup .popup-content .control-buttons {
     width: 100%;
-    margin-left: 38%;
-    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
 }
 
-.popup .popup-content .control-buttons button {
+.edit-popup .popup-content .control-buttons button {
     padding: 10px 30px;
     border: none;
     outline: none;
@@ -49,27 +48,26 @@
     cursor: pointer;
 }
 
-.popup .popup-content .control-buttons .close-popup {
+.edit-popup .popup-content .control-buttons .close-popup {
     background: transparent;
     color: #3284ed;
 }
-
-.popup .popup-content .control-buttons .create-transaction {
+.edit-popup .popup-content .control-buttons .create-transaction {
     background: #3284ed;
     color: #fff;
 }
 
-.popup.active {
+.edit-popup.active {
     top: 0px;
     transition: top 0ms ease-in-out 0ms;
 }
 
-.popup.active .overlay {
+.edit-popup.active .overlay {
     opacity: 1;
     transition: all 300ms ease-in-out;
 }
 
-.popup.active .popup-content {
+.edit-popup.active .popup-content {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
 }

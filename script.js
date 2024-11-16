@@ -4,6 +4,8 @@ class Transactions {
     }
     addTransaction(item) {
         this.transactionsArr.push(item);
+        document.querySelector(".list").innerHTML = '';
+        transactionMethods.updateTransactionUi(this.transactionsArr);
     }
     removeTransaction(id) {
         fetch(`https://acb-api.algoritmika.org/api/transaction/${id}`, {
@@ -18,18 +20,37 @@ class Transactions {
             transactionMethods.updateTransactionUi(data);
         })
     }
-    editTransaction(id) {
+    editTransaction(id, from, to, amount) {
+        const updatedTransaction = {
+            from: from, 
+            to: to,
+            amount: amount, 
+        };
+    
         fetch(`https://acb-api.algoritmika.org/api/transaction/${id}`, {
             method: "PUT",
-        }).then((response) => {
-            if (!response.ok) {
-                throw new Error("Failed to delete the transaction.");
-            }
-            return response.json();
-        }).then((data) => {
-            console.log(data)
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedTransaction),
         })
-     }
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to update the transaction.");
+                }
+                return response.json();
+            })
+            .then((updatedData) => {
+                console.log("Transaction updated:", updatedData);
+    
+                document.querySelector(".list").innerHTML = '';
+                transactionMethods.updateTransactionUi(transactions.transactionsArr.map(transaction => 
+                    transaction.id ===  Number(id) ? updatedData : transaction
+                ));
+            })
+            .catch((error) => console.error("Error updating transaction:", error));
+    }
+    
 }
 
 class TransactionMethods {
@@ -59,16 +80,15 @@ class TransactionMethods {
             if (!popup.classList.contains("active")) {
                 addTransactionButton.textContent = "Close";
                 popup.classList.add("active");
-                console.log(popup.classList.contains("active"))
             } else {
                 addTransactionButton.textContent = "Add Transaction";
                 popup.classList.remove("active");
-                const overlay = document.querySelector(".overlay");
-                overlay.addEventListener("click", () => {
-                    addTransactionButton.textContent = "Add Transaction";
-                    popup.classList.remove("active");
-                });
             }
+            const overlay = document.querySelector(".overlay");
+            overlay.addEventListener("click", () => {
+                addTransactionButton.textContent = "Add Transaction";
+                popup.classList.remove("active");
+            });
         })
 
         submitTransaction.addEventListener("click", () => {
@@ -156,9 +176,51 @@ class TransactionMethods {
 
             editButton.addEventListener("click", (e) => {
                 const editId = e.target.closest(".list-item").id;
-                console.log(editId)
-                // transactions.editTransaction(editId);
-            })
+                const editPopup = document.querySelector(".edit-popup");
+                const cancelEditBtn = document.querySelector(".cancel-edit-btn");
+                const editOverlay = document.querySelector(".edit-overlay");
+            
+                const editInputFrom = document.querySelector(".input-edit-from");
+                const editInputTo = document.querySelector(".input-edit-to");
+                const editInputAmount = document.querySelector(".input-edit-amount");
+
+                // let transaction = 0;
+
+                const transaction = transactions.transactionsArr.find((t) => t.id === Number(editId));
+                // transactions.transactionsArr.forEach((element) => {
+                //     if(Number(editId) === element.id){
+                //         transaction = element.id;
+                //     }
+                // });
+
+                if (transaction) {
+                    editInputFrom.value = transaction.from;
+                    editInputTo.value = transaction.to;
+                    editInputAmount.value = transaction.amount;
+            
+                    editPopup.classList.add("active");
+            
+                    const saveEditBtn = document.querySelector(".edit-transaction-button");
+                    saveEditBtn.addEventListener("click", () => {
+                        transactions.editTransaction(
+                            editId,
+                            editInputFrom.value,
+                            editInputTo.value,
+                            Number(editInputAmount.value)
+                        );
+                        editPopup.classList.remove("active");
+                    });
+            
+                    cancelEditBtn.addEventListener("click", () => {
+                        editPopup.classList.remove("active");
+                    });
+            
+                    editOverlay.addEventListener("click", () => {
+                        editPopup.classList.remove("active");
+                    });
+                }
+            });
+            
         })
         console.log(transactions.transactionsArr)
     }
