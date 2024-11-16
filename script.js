@@ -43,6 +43,8 @@ class TransactionMethods {
         const submitTransaction = document.querySelector(".create-transaction");
         addTransactionButton.addEventListener("click", () => {
             const popup = document.querySelector(".popup");
+            document.querySelector(".success").classList.remove("message-active");
+            document.querySelector(".popup-content").style.opacity = 1;
             if (!popup.classList.contains("active")) {
                 addTransactionButton.textContent = "Close";
                 popup.classList.add("active");
@@ -62,7 +64,7 @@ class TransactionMethods {
             const fromInput = document.querySelector(".input-from");
             const toInput = document.querySelector(".input-to");
             const amountInput = document.querySelector(".input-amount");
-            if(amountInput.value !== '', fromInput.value !== '', toInput.value !== ''){
+            if (amountInput.value !== '', fromInput.value !== '', toInput.value !== '') {
                 const transaction = {
                     from: fromInput.value,
                     to: toInput.value,
@@ -71,30 +73,35 @@ class TransactionMethods {
                 fetch("https://acb-api.algoritmika.org/api/transaction", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json", // Specify the content type
+                        "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(transaction), // Convert the transaction object to JSON
+                    body: JSON.stringify(transaction),
                 })
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error("Failed to add the transaction.");
                         }
-                        return response.json(); // Parse the response JSON
+                        return response.json();
                     })
                     .then((newTransaction) => {
                         transactions.transactionsArr.push(newTransaction);
-    
+
                         document.querySelector(".list").innerHTML = '';
                         transactionMethods.updateTransactionUi(transactions.transactionsArr);
-                        console.log(transactions.transactionsArr)
-    
-                        console.log("Transaction added:", newTransaction);
+
+                        document.querySelector(".popup-content").style.opacity = 0;
+                        document.querySelector(".success").classList.add("message-active");
+                        fromInput.value = ''
+                        amountInput.value = ''
+                        toInput.value = ''
                     })
                     .catch((error) => {
-                        console.error("Error adding transaction:", error);
+                        console.log(`An error ocurred:`, error);
                     });
-            }else{
-                
+            } else {
+                const message = document.querySelector(".message");
+                message.classList.add("error");
+                message.textContent = `Please fill up correctly`;
             }
         })
     }

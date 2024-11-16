@@ -5,16 +5,18 @@
     width: 100%;
     height: 100%;
 }
-.popup .overlay{
+
+.popup .overlay {
     position: absolute;
     top: 0px;
     left: 0px;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 100ms ease-in-out 200ms;
 }
+
 .popup .popup-content {
     z-index: 99;
     position: absolute;
@@ -23,12 +25,12 @@
     transform: translate(-50%, -50%) scale(1.15);
     width: 95%;
     max-width: 400px;
-    height: 300px;
+    height: 320px;
     background: #fff;
     opacity: 0;
     padding: 25px;
     border-radius: 25px;
-    box-shadow: 0px 2px 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0px 2px 2px 5px rgba(0, 0, 0, 0.05);
     transition: all 300ms ease-in-out;
 }
 
@@ -38,7 +40,7 @@
     margin-top: 10%;
 }
 
-.popup .popup-content .control-buttons button{
+.popup .popup-content .control-buttons button {
     padding: 10px 30px;
     border: none;
     outline: none;
@@ -46,43 +48,79 @@
     border-radius: 20px;
     cursor: pointer;
 }
-.popup .popup-content .control-buttons .close-popup{
+
+.popup .popup-content .control-buttons .close-popup {
     background: transparent;
     color: #3284ed;
 }
+
 .popup .popup-content .control-buttons .create-transaction {
     background: #3284ed;
     color: #fff;
 }
-.popup.active{
+
+.popup.active {
     top: 0px;
-    transition:  top 0ms ease-in-out 0ms;
+    transition: top 0ms ease-in-out 0ms;
 }
-.popup.active .overlay{
+
+.popup.active .overlay {
     opacity: 1;
     transition: all 300ms ease-in-out;
 }
-.popup.active .popup-content{
-    transform: translate(-50%,-50%) scale(1);
+
+.popup.active .popup-content {
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
 }
-.div{
+
+.div {
     width: 80%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
-.div input{
+
+.div input {
     border-radius: 5px;
 }
 
-.popup-header{
+.popup-header {
     margin-bottom: 10%;
 }
 
-.error-message{
-    display: none;
-    color: red;
-    height: 20px;
+.message-div {
+    height: 40px;
+}
+
+.error {
+    display: 0;
+    padding: 0px 20px;
     width: 100%;
+    background-color: #d9544d51;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.success {
+    background-color: #98fb98;
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.15);
+    min-width: 300px;
+    height: 220px;
+    opacity: 0;
+    padding: 25px;
+    border-radius: 25px;
+}
+
+.message-active {
+    opacity: 1;
 }
