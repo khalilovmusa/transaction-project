@@ -5,7 +5,7 @@ class Transactions {
     addTransaction(item) {
         this.transactionsArr.push(item);
         document.querySelector(".list").innerHTML = '';
-        transactionMethods.updateTransactionUi(this.transactionsArr);
+        transactionMethods.updateTransactionUi(this.transactionsArr.reverse());
     }
     removeTransaction(id) {
         fetch(`https://acb-api.algoritmika.org/api/transaction/${id}`, {
@@ -90,6 +90,7 @@ class TransactionMethods {
                 addTransactionButton.textContent = "Add Transaction";
                 popup.classList.remove("active");
             });
+            document.querySelector(".message-div").style.display = 0;
         })
 
         submitTransaction.addEventListener("click", () => {
